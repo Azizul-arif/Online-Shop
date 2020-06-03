@@ -1,0 +1,33 @@
+﻿@model OnlineShop.Models.ProductTypes
+@{
+    ViewData["Title"] = "Create";
+}
+
+<br />
+<h2>Create Product Types</h2>
+<form asp-action="Create" method="post">
+    <div class="p-4 rounded border">
+        <div asp-validation-summary="ModelOnly" class="text-danger"> <!--this line is for validation-->
+
+        </div>
+        <div class="row form-group">
+            <div class="col-2">
+                <label asp-for="ProductType"></label>
+            </div>
+            <div class="col-5">
+                <input asp-for="ProductType" class="form-control" /> 
+            </div>
+            <span asp-validation-for="ProductType" class="text-danger"></span>
+        </div>
+        <div>
+            <input type="submit"  class="btn btn-primary" value="Save"/>
+            <a asp-action="Index" class="btn btn-success">Back To List</a>
+        </div>
+
+    </div>
+
+</form>
+@section Scripts{ 
+    @{ await Html.RenderPartialAsync(partialViewName: "_ValidationScriptsPartial");} @*//prevent it going for server side if the value is empty.this line will block it in client side*@
+}
+

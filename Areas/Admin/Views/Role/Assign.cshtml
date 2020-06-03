@@ -1,0 +1,42 @@
+﻿@model OnlineShop.Areas.Admin.Models.RoleUserVm
+@{
+    ViewData["Title"] = "Assign";
+}
+<br />
+<br />
+<h2 class="text-info">Assign Role</h2>
+<div class="container">
+    <!--enctype="multipart/form-data" is used to bind data-->
+    <form method="post" asp-action="Assign" enctype="multipart/form-data">
+        <div class="">
+            <div asp-validation-summary="ModelOnly" class="text-danger">
+
+            </div>
+        </div>
+
+        <h3>@ViewBag.message</h3>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="UserId"></label>
+            </div>
+            <div class="col-5">
+                @*<input asp-for="ProductTypeId" class="form-control" />*@
+                <select asp-for="UserId" asp-items="ViewBag.UserId" class="form-control"></select> <!--showing data in dropdown -->
+            </div>
+            <span asp-validation-for="UserId" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="RoleId"></label>
+            </div>
+            <div class="col-5">
+                <select asp-for="RoleId" asp-items="ViewBag.RoleId" class="form-control"></select> <!--showing data in dropdown -->
+            </div>
+            <span asp-validation-for="RoleId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Assign" />
+            <a asp-action="Index" class="btn btn-success">Back to List</a>
+        </div>
+    </form>
+</div>

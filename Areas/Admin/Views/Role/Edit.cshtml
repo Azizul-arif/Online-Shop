@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewData["Title"] = "Edit";
+}
+<br />
+<br />
+<h2 class="text-info">Edit  Role</h2>
+<div class="container">
+    <!--enctype="multipart/form-data" is used to bind data-->
+    <form method="post" asp-action="Edit" enctype="multipart/form-data" id="role-form">
+        <div class="">
+            <div asp-validation-summary="ModelOnly" class="text-danger">
+
+            </div>
+        </div>
+
+        <h3>@ViewBag.message</h3> <!--To show notification or a message -->
+        <div class="form-group row">
+            <div class="col-2">
+                <label>Role Name</label>
+            </div>
+            <div class="col-5">
+                <input type="hidden" value="@ViewBag.id" name="id"/>
+                <input type="text" id="name" name="name" required="required" class="form-control" value="@ViewBag.name" />
+            </div>
+
+        </div>
+
+
+
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Update" />
+            <a asp-action="Index" class="btn btn-success">Back to List</a>
+        </div>
+    </form>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+    $(document).ready(function () {
+        $("#role-form").validate({
+            rules: {
+                UserName: {
+                    required: true,
+                },
+                PasswordHash: {
+                    required: true,
+                }
+            },
+            messages: {
+                UserName: "Enter your Username",
+                PasswordHash: "Enter your password"
+            }
+
+        });
+    });
+    </script>
+}

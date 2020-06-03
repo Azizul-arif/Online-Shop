@@ -1,0 +1,70 @@
+﻿
+@using OnlineShop.Models
+@model IEnumerable<ApplicationUser>
+@{
+    ViewData["Title"] = "Index";
+}
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<br />
+<br />
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-info">User  Role</h2>
+    </div>
+    <div class="col-6 text-right">
+        <a asp-action="Create" class="btn btn-info"><i class="fa fa-plus"></i>&nbsp; New Role</a>
+    </div>
+
+</div>
+<br />
+<div>
+    <table class="table table-striped border">
+        <tr class="table-info">
+            <th>Name</th>
+
+        </tr>
+        <!--Data come from ViewBag.Roles as there is already a built-in class in identity -->
+        @foreach (var item in ViewBag.Roles)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td style="width:150px;">
+                    <div class="btn-group">
+                        <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.Id"><i class="fa fa-edit"></i>Edit</a>
+                        @*<a asp-action="Details" class="btn btn-success" asp-route-id="@item.Id"><i class="fa fa-info"></i>Details</a>*@
+                        <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id"><i class="fa fa-trash"></i>Delete</a>
+
+                    </div>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+@section scripts{
+    <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/alertify.min.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#myTable").DataTable();
+        });
+
+
+        $(function(){
+            var save = '@TempData["save"]'
+            if(save!='') {
+                alertify.success(save);
+            }
+            var edit = '@TempData["edit"]'
+            if(edit!='') {
+                alertify.success(edit);
+            }
+            var del = '@TempData["delete"]'
+            if (del!='') {
+                alertify.error(del);
+            }
+        })
+    </script>
+}

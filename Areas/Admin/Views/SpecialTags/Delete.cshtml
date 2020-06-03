@@ -1,0 +1,35 @@
+﻿@model OnlineShop.Models.SpecialTags
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<br />
+<h2>Delete Special Tag</h2>
+<form asp-action="Delete" method="post">
+    <div class="p-4 rounded border">
+        <div asp-validation-summary="ModelOnly" class="text-danger">
+            <!--this line is for validation-->
+
+        </div>
+        <div class="row form-group">
+            <div class="col-2">
+                <label asp-for="TagName"></label>
+            </div>
+            <div class="col-5">
+                <input type="hidden" asp-for="Id" />
+                <input asp-for="TagName" readonly="readonly" class="form-control" />
+            </div>
+            <span asp-validation-for="TagName" class="text-danger"></span>
+        </div>
+        <div>
+            <input type="submit" class="btn btn-danger" value="Delete" />
+            <a asp-action="Index" class="btn btn-success">Back To List</a>
+        </div>
+
+    </div>
+
+</form>
+@section Scripts{
+    @{ await Html.RenderPartialAsync(partialViewName: "_ValidationScriptsPartial");} @*//prevent it going for server side if the value is empty.this line will block it in client side*@
+}
+
